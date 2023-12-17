@@ -1,45 +1,6 @@
 <div class="content-page">
   <!-- Carousel -->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li
-        data-target="#myCarousel"
-        [ngClass]="{ active: index === 0 }"
-        (click)="selectIndex(0)"
-      ></li>
-      <li
-        data-target="#myCarousel"
-        [ngClass]="{ active: index === 1 }"
-        (click)="selectIndex(1)"
-      ></li>
-      <li
-        data-target="#myCarousel"
-        [ngClass]="{ active: index === 2 }"
-        (click)="selectIndex(2)"
-      ></li>
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="carousel-item" [ngClass]="{ active: index === 0 }">
-        <img src="/assets/img/slide 1.jpg" />
-      </div>
-      <div class="carousel-item" [ngClass]="{ active: index === 1 }">
-        <img src="/assets/img/slide 2.jpg" />
-      </div>
-      <div class="carousel-item" [ngClass]="{ active: index === 2 }">
-        <img src="/assets/img/slide 3.jpg" />
-      </div>
-    </div>
-    <!-- Controls  -->
-    <a class="carousel-control-prev" role="button" (click)="onPreviousClick()">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </a>
-    <a class="carousel-control-next" role="button" (click)="onNextClick()">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </a>
-  </div>
-
+ 
   <!-- tabs.component.html -->
 
   <div class="card mt-4 mb-4">
