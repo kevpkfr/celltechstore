@@ -1,0 +1,30 @@
+<div class="ml-4">
+  <a  class="btn btn-outline-primary mt-4" (click)="onRegresar()">Regresar</a>
+</div>
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="row text-center">
+    <div class="col-12 col-md-6 offset-md-3">
+      <div class="product-card">
+        <div class="card-banner">
+          <figure class="product-banner img-holder" style="--width: 448; --height: 470;">
+            <img [src]="product?.imagen" width="500" height="250" loading="lazy" alt="Short Sleeve Shirt" class="img-cover">
+          </figure>
+        </div>
+        <div class="card-content">
+          <h3 class="h4 title">
+            <h3 class="card-title">{{ product?.titulo }}</h3>
+          </h3>
+          <span class="price">Precio: {{ product?.precio }}</span>
+          <h3 class="h4 title">
+            <h5>{{ product?.descripcion }}</h5>
+          </h3>
+          <div class="text-center">
+            <a (click)="onRegresar()" class="btn btn-outline-primary mt-4">Regresar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+

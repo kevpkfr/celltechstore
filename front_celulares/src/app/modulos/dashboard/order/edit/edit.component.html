@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="address">Dirección:</label>
+        <input type="text" class="form-control" id="address" [(ngModel)]="orderEdit.adress" required />
+        <div class="invalid-feedback">
+          La dirección es requerida.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="date">Fecha:</label>
+        <input type="text" class="form-control" id="date" [(ngModel)]="orderEdit.date" required />
+        <div class="invalid-feedback">
+          La fecha es requerida.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="product">Selecciona un producto:</label>
+        <select class="form-control" id="product" [(ngModel)]="selectedProductId" required>
+          <option *ngFor="let product of productos" [value]="product.id">{{ product.nombre }}</option>
+        </select>
+        <div class="invalid-feedback">
+          Debes seleccionar un producto.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="quantity">Cantidad:</label>
+        <input type="number" class="form-control" id="quantity" [(ngModel)]="selectedQuantity" required />
+        <div class="invalid-feedback">
+          La cantidad es requerida.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="addOrUpdateProduct()">Agregar o Actualizar Producto</button>
+      </div>
+    </div>
+  </div>
+<div class="row mt-4">
+  <div class="col-md-12">
+    <h4>Productos Seleccionados:</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let product of orderEdit.products; let i = index">
+        {{ getProductById(product.id)?.nombre }} - Cantidad: {{ product.quantity }}
+        <button class="btn btn-danger btn-sm" (click)="removeProduct(i)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <button class="btn btn-success" (click)="submitOrder()" [disabled]="!orderEdit.products.length">Actualizar Orden</button>
+      </div>
+    </div>
+  </div>
+</div>

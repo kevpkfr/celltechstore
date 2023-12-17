@@ -1,0 +1,189 @@
+<div class="content-page">
+  <!-- Carousel -->
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li
+        data-target="#myCarousel"
+        [ngClass]="{ active: index === 0 }"
+        (click)="selectIndex(0)"
+      ></li>
+      <li
+        data-target="#myCarousel"
+        [ngClass]="{ active: index === 1 }"
+        (click)="selectIndex(1)"
+      ></li>
+      <li
+        data-target="#myCarousel"
+        [ngClass]="{ active: index === 2 }"
+        (click)="selectIndex(2)"
+      ></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="carousel-item" [ngClass]="{ active: index === 0 }">
+        <img src="/assets/img/slide 1.jpg" />
+      </div>
+      <div class="carousel-item" [ngClass]="{ active: index === 1 }">
+        <img src="/assets/img/slide 2.jpg" />
+      </div>
+      <div class="carousel-item" [ngClass]="{ active: index === 2 }">
+        <img src="/assets/img/slide 3.jpg" />
+      </div>
+    </div>
+    <!-- Controls  -->
+    <a class="carousel-control-prev" role="button" (click)="onPreviousClick()">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" role="button" (click)="onNextClick()">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <!-- tabs.component.html -->
+
+  <div class="card mt-4 mb-4">
+    <div class="card-header">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [class.active]="activeTab === 'celulares'"
+            (click)="selectTab('celulares')"
+            >celulares</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [class.active]="activeTab === 'tablets'"
+            (click)="selectTab('tablets')"
+            >tablets</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [class.active]="activeTab === 'todos'"
+            (click)="selectTab('todos')"
+            >nuevos</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body">
+      <div *ngIf="activeTab === 'celulares'">
+        <div class="tab-pane">
+          <p class="tittles-pages">SmartPhones</p>
+          <div class="row">
+            <div
+              class="col-xs-12 col-sm-6 col-md-3"
+              *ngFor="let product of productList; let i = index"
+            >
+              <div
+                class="thumbnail thumbnail-content-phones"
+                *ngIf="product.isCel"
+              >
+                <img
+                  [src]="product.imagen"
+                  alt="SmartPhone"
+                  class="card-img-top h-50"
+                />
+                <div class="caption">
+                  <h3 class="text-center">{{ product.titulo }}</h3>
+                  <p class="text-justify">
+                    {{ product.descripcion | description }}
+                  </p>
+                  <div class="row">
+                    <button
+                      class="btn btn-danger mr-4"
+                      [routerLink]="'/pages/products/' + product.id.toString()"
+                    >
+                      Detalles
+                    </button>
+                    <button
+                      class="btn btn-success"
+                      (click)="addToCart(product)"
+                    >
+                      Agregar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="activeTab === 'tablets'">
+        <div class="tab-pane">
+          <p class="tittles-pages">SmartPhones</p>
+          <div class="row">
+            <div
+              class="col-xs-12 col-sm-6 col-md-3"
+              *ngFor="let product of productList; let i = index"
+            >
+              <div
+                class="thumbnail thumbnail-content-phones"
+                *ngIf="!product.isCel"
+              >
+                <img
+                  [src]="product.imagen"
+                  alt="SmartPhone"
+                  class="card-img-top h-50"
+                />
+                <div class="caption">
+                  <h3 class="text-center">{{ product.titulo }}</h3>
+                  <p class="text-justify">
+                    {{ product.descripcion | description }}
+                  </p>
+                  <div class="row">
+                    <button
+                      class="btn btn-danger mr-4"
+                      [routerLink]="'/pages/products/' + product.id.toString()"
+                    >
+                      Detalles
+                    </button>
+                    <button
+                      class="btn btn-success"
+                      (click)="addToCart(product)"
+                    >
+                      Agregar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="activeTab === 'todos'">
+        <div class="tab-pane active">
+          <p class="tittles-pages">Productos Nuevos Lista</p>
+          <div class="container" *ngIf="!listaVacia">
+            <table class="table text-center">
+              <thead>
+                <tr>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Precio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let producto of productos">
+                  <td>{{ producto.nombre }}</td>
+                  <td>{{ producto.precio }}$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="container" *ngIf="listaVacia">
+            <div class="p-3 text-center">
+              <h2>{{ listaVacia }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

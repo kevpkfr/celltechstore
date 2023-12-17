@@ -1,0 +1,43 @@
+<div id="parent-cart">
+  <div class="row">
+    <div id="cart_items" class="col-8 text-center"  *ngIf="cartItems.length === 0">
+      <img src="" alt="" class="mx-auto">
+      <p>Tu carrito está vacío</p>
+      <div class="text-center">
+        <a (click)="onRegresar()" class="btn btn-outline-primary">Regresar</a>
+      </div>
+    </div>
+    <div id="cart_items" class="col-8 text-center"  *ngIf="cartItems.length > 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td>{{ item.titulo }}</td>
+            <td>{{ item.precio | currency }}</td>
+            <td>
+              <button class="btn btn-outline-danger" (click)="removeFromCart(item)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="checkout" class="col-4">
+      <div class="total_name" style="font-size: 1.5em; color: red; font-weight: bold;" *ngIf="cartItems.length > 0">Total:  {{ getTotalPrice() | currency }}</div>
+      <a>
+        <button class="btn btn-danger mt-4" *ngIf="isLogged">Comprar</button>
+        <div *ngIf="!isLogged">
+          <button class="btn btn-danger mt-4" routerLink="/pages/login">Iniciar</button>
+          <p>Inicia Sesion Antes de Comprar</p>
+        </div>
+      </a>
+      
+    </div>
+  </div>
+</div>
+<br><br><br><br>
